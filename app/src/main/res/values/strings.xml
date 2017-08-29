@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RoundAbout</string>
+    <string name="round_number">Round: 0</string>
+    <string name="current_actor">Archer - 19</string>
+    <string name="set_round">Set Round</string>
+    <string name="next_round">Next Round</string>
+    <string name="actual_time">00:00:00</string>
+</resources>
