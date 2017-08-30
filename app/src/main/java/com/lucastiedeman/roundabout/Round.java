@@ -12,7 +12,7 @@ public class Round {
 
     private int round;
     private ArrayList<Actor> actors = new ArrayList<>();
-    private Actor actor;
+    private Actor currentActor;
     private int nextActorIndex;
 
     public Round() {
@@ -24,14 +24,20 @@ public class Round {
 
     //  Called by nextActor button
     public void nextActor() {
-        if (actors.isEmpty())
-            actor = null;
 
-        if (nextActorIndex >= actors.size() || nextActorIndex < 0)
+    	if (actors.isEmpty()) { return; }
+    	
+    	//	Checking the initiative of each effect for each actor and changing as necessary???
+    	for (int i = 0; i < actors.size(); i++)
+    		actors.get(i).change(0, currentActor.getActorInit());
+    	
+        if (nextActorIndex >= actors.size()) {
             nextActorIndex = 0;
+            setRound(getRound() + 1);
+        }
 
         setActor(actors.get(getNextActorIndex()));
-        setNextActorIndex(nextActorIndex + 1);
+        setNextActorIndex(nextActorIndex + 1); */
     }
 
     //  Also called by roundLabel
@@ -61,7 +67,7 @@ public class Round {
         this.round = round;
     }
 
-    public void setActor(Actor actor) { this.actor = actor; }
+    public void setActor(Actor actor) { currentActor = actor; }
 
     public void setNextActorIndex(int nextActorIndex) { this.nextActorIndex = nextActorIndex; }
 }

@@ -15,27 +15,28 @@ public class Actor {
     private static Logger LOGGER = Logger.getLogger(Actor.class.getName());
 
     private String name;
-    private int initiative;
+    private int actorInit;
     private ArrayList<Effect> effects = new ArrayList<>();
 
     public Actor() { }
 
-    public Actor(String name, int initiative) {
+    public Actor(String name, int actorInit) {
         this.name = name;
-        this.initiative = initiative;
+        this.actorInit = actorInit;
     }
 
-    public void change(int change) {
+    public void change(int change, int currentInit) {
         for (int i = 0; i < effects.size(); i++) {
             effects.get(i).change(change);
             if (effects.get(i).getDuration() <= 0)
                 effects.remove(i);
         }
+        // Must find how to use currentInit to properly check whether an effect's duration should change
     }
 
     public String getName() { return name; }
 
-    public int getInitiative() { return initiative; }
+    public int getActorInit() { return actorInit; }
 
     public String getEffects() {
         String printEffects = "";
@@ -48,7 +49,7 @@ public class Actor {
 
     public void setName(String name) { this.name = name; }
 
-    public void setInitiative(int initiative) { this.initiative = initiative; }
+    public void setActorInit(int actorInit) { this.actorInit = actorInit; }
 
     public void addEffect(String description, int duration) {
         Effect temp = new Effect(description, duration);
@@ -57,7 +58,7 @@ public class Actor {
 
     public String toString() {
         return  "Name:\t\t\n" + getName() +
-                "\nInitiative:\t" + getInitiative() +
+                "\nInitiative:\t" + getActorInit() +
                 getEffects();
     }
 }
